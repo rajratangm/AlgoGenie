@@ -1,0 +1,13 @@
+def sort_string(s):
+    # Sort the string using sorted() which returns a list of characters sorted
+    sorted_characters = sorted(s)
+    
+    # Join the sorted list back into a string
+    sorted_string = ''.join(sorted_characters)
+    
+    return sorted_string
+
+# Test cases
+print(sort_string("python"))  # expected output: 'hnopty'
+print(sort_string("programming"))  # expected output: 'aggimmnoprr'
+print(sort_string("datascience"))  # expected output: 'aacdeeinssst'

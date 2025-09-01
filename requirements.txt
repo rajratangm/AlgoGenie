@@ -1,0 +1,11 @@
+python-dotenv
+openai
+requests
+flask
+flask-cors
+autogen-agentchat
+autogen-core
+auogen_ext
+tiktoken
+"autogen-ext[docker]"
+streamlit
