@@ -1,0 +1,67 @@
+class ListNode:
+    def __init__(self, value=0, next=None):
+        self.value = value
+        self.next = next
+
+def sortLinkedList(head):
+    # Base case: if head is None or there's only one element
+    if not head or not head.next:
+        return head
+
+    # Function to find the middle of the linked list
+    def getMiddle(node):
+        if not node:
+            return node
+        slow, fast = node, node.next
+        while fast and fast.next:
+            slow = slow.next
+            fast = fast.next.next
+        return slow
+    
+    # Function to merge two halves
+    def merge(left, right):
+        dummy = ListNode()
+        tail = dummy
+        while left and right:
+            if left.value < right.value:
+                tail.next = left
+                left = left.next
+            else:
+                tail.next = right
+                right = right.next
+            tail = tail.next
+        tail.next = left or right
+        return dummy.next
+
+    # Recursive sort
+    middle = getMiddle(head)
+    nextToMiddle = middle.next
+    middle.next = None
+    
+    left = sortLinkedList(head)
+    right = sortLinkedList(nextToMiddle)
+
+    sortedList = merge(left, right)
+    
+    return sortedList
+
+# Helper function to print the linked list
+def printList(node):
+    while node:
+        print(node.value, end=" -> ")
+        node = node.next
+    print("None")
+
+# Test cases
+# Let's create a linked list: 4 -> 3 -> 1 -> 5 -> 2
+head = ListNode(4)
+head.next = ListNode(3)
+head.next.next = ListNode(1)
+head.next.next.next = ListNode(5)
+head.next.next.next.next = ListNode(2)
+
+# Example of how to sort the list
+sorted_head = sortLinkedList(head)
+printList(sorted_head)
+
+# Additional test cases can be created similarly.
